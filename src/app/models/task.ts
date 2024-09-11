@@ -1,4 +1,4 @@
-export interface task {
+export interface Task {
 
   id:number
   nom: string
@@ -8,5 +8,6 @@ export interface task {
   statu: string
   idProjet: number
 }
+
 
 
