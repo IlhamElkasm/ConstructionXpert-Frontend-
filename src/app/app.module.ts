@@ -26,15 +26,11 @@ import { JwtHelperService ,JWT_OPTIONS } from '@auth0/angular-jwt';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-<<<<<<< HEAD
-    BrowserAnimationsModule
-=======
     BrowserAnimationsModule,
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, 
     JwtHelperService
->>>>>>> e43eb504062a4bd20d13c83b0030f0fb2c231383
   ],
   bootstrap: [AppComponent]
 })
