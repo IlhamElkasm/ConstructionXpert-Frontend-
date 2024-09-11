@@ -3,6 +3,9 @@ import { Observable } from 'rxjs';
 import { Jwt } from '../models/Jwt';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +24,4 @@ export class AuthService {
 login(loginRequest:any): Observable<Jwt>{
   return this.http.post<Jwt>(`${this.BASE_URL}/authenticate`, loginRequest)
 }
-
-
-
 }
