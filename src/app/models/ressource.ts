@@ -1,4 +1,4 @@
-export interface ressource {
+export interface Ressource {
   id: number
   nom: string
   typee: string
