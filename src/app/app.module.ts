@@ -12,6 +12,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { JwtHelperService ,JWT_OPTIONS } from '@auth0/angular-jwt';
 
+//interceptor
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptor/interceptor.interceptor';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -31,8 +35,11 @@ import { JwtHelperService ,JWT_OPTIONS } from '@auth0/angular-jwt';
     BrowserAnimationsModule,
   ],
   providers: [
-    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, 
-    JwtHelperService
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
+    [AuthService,
+      { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    ],
   ],
   bootstrap: [AppComponent]
 })

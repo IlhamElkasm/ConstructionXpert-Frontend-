@@ -6,14 +6,32 @@ import { DashboardComponent } from './dashboard.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 
+
+//++++++++++++++Angular Materail
+//dashboard
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
+
+
+
 @NgModule({
   declarations: [
     DashboardComponent,
-    SidebarComponent
+    SidebarComponent,
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+
+    //+++++++++++++++Angular material
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatCardModule
   ]
 })
 export class DashboardModule { }
