@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit{
             localStorage.setItem('jwt', jwToken);
             localStorage.setItem('role', response.role);
            this.router.navigateByUrl("/dashboard")
+            this.router.navigate(['/dashboard']);
         }
     )
   }
