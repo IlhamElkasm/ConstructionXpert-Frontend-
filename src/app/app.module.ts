@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { JwtHelperService ,JWT_OPTIONS } from '@auth0/angular-jwt';
@@ -21,7 +22,8 @@ import { AuthService } from './services/auth.service';
     AppComponent,
     LoginComponent,
     LogoutComponent,
-    PageNotFoundComponent,
+    RegisterComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
