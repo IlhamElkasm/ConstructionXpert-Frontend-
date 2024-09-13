@@ -28,12 +28,10 @@ export class ProjetComponent implements OnInit, AfterViewInit {
     this.loadProjets();
   }
 
-  // Assign paginator after the view has been initialized
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
 
-  // Load projects from the service and bind to the table
   loadProjets() {
     this.projetService.getProjets().subscribe(
       (data: Projet[]) => {

@@ -1,1 +1,48 @@
-<p>add works!</p>
+
+<div class="add-project-container">
+  <h2>Add New Project</h2>
+  <form [formGroup]="projetForm" (ngSubmit)="onSubmit()" class="project-form">
+    <div class="form-group">
+      <label for="nom">Project Name</label>
+      <input type="text" id="nom" formControlName="nom" class="form-control">
+      <div *ngIf="projetForm.get('nom')?.touched && projetForm.get('nom')?.invalid" class="error-message">
+        Project name is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="date_debut">Start Date</label>
+      <input type="date" id="date_debut" formControlName="date_debut" class="form-control">
+      <div *ngIf="projetForm.get('date_debut')?.touched && projetForm.get('date_debut')?.invalid" class="error-message">
+        Start date is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="date_fin">End Date</label>
+      <input type="date" id="date_fin" formControlName="date_fin" class="form-control">
+      <div *ngIf="projetForm.get('date_fin')?.touched && projetForm.get('date_fin')?.invalid" class="error-message">
+        End date is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description" class="form-control"></textarea>
+      <div *ngIf="projetForm.get('description')?.touched && projetForm.get('description')?.invalid" class="error-message">
+        Description is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="budget">Budget</label>
+      <input type="number" id="budget" formControlName="budget" class="form-control">
+      <div *ngIf="projetForm.get('budget')?.touched && projetForm.get('budget')?.invalid" class="error-message">
+        Budget is required and must be a positive number.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Project</button>
+  </form>
+</div>
+
