@@ -16,6 +16,7 @@ import { JwtHelperService ,JWT_OPTIONS } from '@auth0/angular-jwt';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/interceptor.interceptor';
 import { AuthService } from './services/auth.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AuthService } from './services/auth.service';
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

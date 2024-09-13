@@ -2,6 +2,6 @@ export interface Ressource {
   id: number
   nom: string
   typee: string
-  quantité: number
+  quantite: number
   idTache: number
 }
