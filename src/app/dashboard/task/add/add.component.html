@@ -1,0 +1,40 @@
+<div class="task-form">
+  <form [formGroup]="taskForm" (ngSubmit)="addTask()">
+    <div>
+      <label for="nom">Task Name</label>
+      <input id="nom" formControlName="nom" type="text" />
+    </div>
+
+    <div>
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description"></textarea>
+    </div>
+
+    <div>
+      <label for="date_debut">Start Date</label>
+      <input id="date_debut" formControlName="date_debut" type="date" />
+    </div>
+
+    <div>
+      <label for="date_fin">End Date</label>
+      <input id="date_fin" formControlName="date_fin" type="date" />
+    </div>
+
+    <div>
+      <label for="statu">Status</label>
+      <input id="statu" formControlName="statu" type="text" />
+    </div>
+
+    <div>
+      <label for="idProjet">Project</label>
+      <select id="idProjet" formControlName="idProjet">
+        <option *ngFor="let projet of projets" [value]="projet.id">
+          {{ projet.nom }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <button type="submit" [disabled]="taskForm.invalid">Add Task</button>
+    </div>
+  </form>
+</div>

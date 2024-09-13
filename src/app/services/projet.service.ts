@@ -38,7 +38,7 @@ export class ProjetService {
 
   //  Delete project by id
   deleteProjet(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}/taches`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
 

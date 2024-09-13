@@ -1,5 +1,4 @@
 export interface Task {
-
   id:number
   nom: string
   date_debut: string

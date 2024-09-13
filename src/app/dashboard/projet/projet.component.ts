@@ -22,7 +22,9 @@ export class ProjetComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private projetService: ProjetService,private authService:AuthService) {}
+  constructor(
+    private projetService: ProjetService,
+    private authService:AuthService){}
 
   ngOnInit() {
     this.loadProjets();
