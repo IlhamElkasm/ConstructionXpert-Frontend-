@@ -36,9 +36,9 @@ export class ProjetService {
     return this.http.put<Projet>(`${this.apiUrl}/${id}`, updateData);
   }
 
-  // Delete project by id
+  //  Delete project by id
   deleteProjet(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}/taches`);
   }
 
 

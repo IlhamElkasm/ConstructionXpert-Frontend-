@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProjetComponent } from './projet.component';
 import { AddComponent } from './add/add.component';
-import { ViewWithCrudComponent } from './view-with-crud/view-with-crud.component';
 import { ViewComponent } from './view/view.component';
 import { DeleteComponent } from './delete/delete.component';
 import { EditComponent } from './edit/edit.component';
@@ -11,8 +10,7 @@ import { PageNotFoundComponent } from 'src/app/page-not-found/page-not-found.com
 const routes: Routes = [
   { path: '', component: ProjetComponent },
   { path: 'add',component:AddComponent},
-  { path: 'viewAdmin',component:ViewWithCrudComponent},
-  { path: 'view',component:ViewComponent},
+  { path: 'view/:id',component:ViewComponent},
   { path: 'delete/:id',component:DeleteComponent},
   { path: 'edit/:id',component:EditComponent},
   { path: '**', component:PageNotFoundComponent}
