@@ -10,8 +10,7 @@ import { Location } from '@angular/common';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
-export class EditComponent implements  OnInit {
-  
+export class EditComponent implements OnInit {
   taskForm!: FormGroup;
   taskId!: number;
 
@@ -21,7 +20,7 @@ export class EditComponent implements  OnInit {
     private router: Router,
     private taskService: TaskService,
     private snackBar: MatSnackBar,
-    private location: Location
+    private location:Location
   ) {}
 
   ngOnInit() {
@@ -31,7 +30,7 @@ export class EditComponent implements  OnInit {
       this.initForm();
       this.loadTaskData();
     } else {
-      this.showError('Invalid task ID');
+      this.showError('Invalid project ID');
       this.location.back();
     }
   }
@@ -49,34 +48,36 @@ export class EditComponent implements  OnInit {
 
   loadTaskData() {
     this.taskService.getTaskById(this.taskId).subscribe(
-      (task) => {
-        if (task) {
-          this.taskForm.patchValue(task);
+      (project) => {
+        if (project) {
+          this.taskForm.patchValue(project);
         } else {
-          this.showError('Task not found');
+          this.showError('Project not found');
           this.location.back();
+
         }
       },
       (error) => {
-        this.showError('Failed to load task data');
-        console.error('Error loading task:', error);
-        this.location.back();
+        this.showError('Failed to load project data');
+        console.error('Error loading project:', error);
+       this.location.back();
+
       }
     );
   }
 
-  // This is the missing onSubmit method that handles form submission
   onSubmit() {
     if (this.taskForm.valid) {
-      const updatedTask = { ...this.taskForm.value, id: this.taskId };
-      this.taskService.updateTask(this.taskId, updatedTask).subscribe(
+      const updatedtask = { ...this.taskForm.value, id: this.taskId };
+      this.taskService.updateTask(this.taskId, updatedtask).subscribe(
         () => {
-          this.showSuccess('Task updated successfully');
+          this.showSuccess('Project updated successfully');
           this.location.back();
+
         },
         (error) => {
-          this.showError('Failed to update task');
-          console.error('Error updating task:', error);
+          this.showError('Failed to update project');
+          console.error('Error updating project:', error);
         }
       );
     } else {
@@ -86,6 +87,7 @@ export class EditComponent implements  OnInit {
 
   onCancel() {
     this.location.back();
+
   }
 
   private showSuccess(message: string) {

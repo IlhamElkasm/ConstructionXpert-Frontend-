@@ -13,7 +13,7 @@ export class RessourceComponent implements OnInit, AfterViewInit {
 
   ressources: Ressource[] = [];
   dataSource = new MatTableDataSource<Ressource>([]);
-  displayColumns = ["id","task_id", "nom", "typee", "quantite", "action"];
+  displayColumns = ["id","idTache", "nom", "typee", "quantite", "action"];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
