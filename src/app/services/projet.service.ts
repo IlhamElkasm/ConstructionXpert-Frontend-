@@ -48,7 +48,15 @@ export class ProjetService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+// Sorting Ascending
+getProjectsWithSortingAsc(field: string): Observable<Projet[]> {
+  return this.http.get<Projet[]>(`${this.apiUrl}/Asc/${field}`);
+}
 
+// Sorting Descending
+getProjectsWithSortingDesc(field: string): Observable<Projet[]> {
+  return this.http.get<Projet[]>(`${this.apiUrl}/Desc/${field}`);
+}
 
 
 

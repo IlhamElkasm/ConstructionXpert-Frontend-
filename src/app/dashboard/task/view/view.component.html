@@ -1,1 +1,20 @@
-<p>view works!</p>
+<div class="task-details-container">
+    <div class="task-card">
+      <div class="task-card__header">
+        <h1 class="task-card__title">Task Details</h1>
+      </div>
+      <div class="task-card__content">
+        <div class="task-info">
+          <h2 class="task-info__name">Task Name: <span>{{ task.nom }}</span></h2>
+          <div class="task-info__grid">
+            <p class="task-info__item"><strong>Start Date:</strong> <span>{{ task.date_debut }}</span></p>
+            <p class="task-info__item"><strong>End Date:</strong> <span>{{ task.date_fin }}</span></p>
+            <p class="task-info__item"><strong>Statu:</strong> <span>${{ task.statu }}</span></p>
+            <p class="task-info__item"><strong>IdProjet:</strong> <span>${{ task.idProjet }}</span></p>
+          </div>
+          <p class="task-info__description"><strong>Description:</strong> <span>{{ task.description }}</span></p>
+        </div>
+        <button class="btn btn--primary" (click)="goBack()">Go Back</button>
+      </div>
+    </div>
+  </div>

@@ -43,4 +43,21 @@ export class TaskService {
   deleteTasksByProjectId(projectId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/projet/${projectId}`);
   }
+
+
+
+   // Pagination avec offset et pageSize
+   getTasksWithPagination(offset: number, pageSize: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/pagination/${offset}/${pageSize}`);
+  }
+
+  // Tri Ascendant
+  getTasksSortedAsc(field: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/Asc/${field}`);
+  }
+
+  // Tri Descendant
+  getTasksSortedDesc(field: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/Desc/${field}`);
+  }
 }
