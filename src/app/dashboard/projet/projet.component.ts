@@ -13,14 +13,16 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './projet.component.html',
   styleUrls: ['./projet.component.css']
 })
-export class ProjetComponent implements OnInit, AfterViewInit {
+export class ProjetComponent implements OnInit{
 
   projets: Projet[] = [];
   dataSource = new MatTableDataSource<Projet>([]);
   displayColumns = ["id", "nom", "date_debut", "date_fin", "description", "budget", "action"];
   selection = new SelectionModel<Projet>(true, []);
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  errorMessage!: string;
+
+  // @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private projetService: ProjetService,
@@ -30,20 +32,67 @@ export class ProjetComponent implements OnInit, AfterViewInit {
     this.loadProjets();
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-  }
+  // ngAfterViewInit(): void {
+  //   this.dataSource.paginator = this.paginator;
+  // }
 
-  loadProjets() {
+  // loadProjets() {
+  //   this.projetService.getProjets().subscribe(
+  //     (data: Projet[]) => {
+  //       this.projets = data;
+  //       this.dataSource.data = this.projets;
+  //       console.log(this.projets)
+  //     },
+  //     (error) => {
+  //       console.log('Error fetching projets', error);
+  //     }
+  //   );
+  // }
+
+  loadProjets(): void {
     this.projetService.getProjets().subscribe(
       (data: Projet[]) => {
-        this.projets = data;
-        this.dataSource.data = this.projets;
-        console.log(this.projets)
+        if (Array.isArray(data)) {  // Ensure data is an array
+          this.projets = data;
+          this.dataSource.data = this.projets;
+          console.log(this.projets)
+        } else {
+          this.projets = [];  // Fallback to an empty array if data is not an array
+          console.error('API response is not an array');
+        }
       },
-      (error) => {
-        console.log('Error fetching projets', error);
-      }
+      error => this.errorMessage = 'Error loading projets'
     );
   }
+    // Sort Ascending by field
+sortProjectsAsc(field: string): void {
+  this.projetService.getProjectsWithSortingAsc(field).subscribe(
+    (data: any) => {
+      console.log('API response (ascending):', data); // Log the API response
+      if (data && Array.isArray(data.response)) {
+        this.projets = data.response; // Access the array from 'response'
+      } else {
+        this.projets = [];
+        console.error('Sorted API response is not an array');
+      }
+    },
+    error => this.errorMessage = 'Error sorting projets (asc)'
+  );
+}
+
+// Sort Descending by field
+sortProjectsDesc(field: string): void {
+  this.projetService.getProjectsWithSortingDesc(field).subscribe(
+    (data: any) => {
+      console.log('API response (descending):', data); // Log the API response
+      if (data && Array.isArray(data.response)) {
+        this.projets = data.response; // Access the array from 'response'
+      } else {
+        this.projets = [];
+        console.error('Sorted API response is not an array');
+      }
+    },
+    error => this.errorMessage = 'Error sorting projets (desc)'
+  );
+}
 }

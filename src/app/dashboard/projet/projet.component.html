@@ -5,6 +5,15 @@
     Add New Project
   </button>
 
+  <!-- Ascending Sort Button -->
+  <button (click)="sortProjectsAsc('id')" class="mb-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full hover:from-purple-600 hover:to-pink-600 transition duration-300 shadow-lg transform hover:scale-105">
+    Sort by Name Asc
+  </button>
+
+  <!-- Descending Sort Button -->
+  <button (click)="sortProjectsDesc('id')" class="ml-4 mb-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full hover:from-purple-600 hover:to-pink-600 transition duration-300 shadow-lg transform hover:scale-105">
+    Sort by Name Desc
+  </button>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <!-- Columns definitions -->
@@ -56,4 +65,4 @@
 </table>
 
 <!-- Paginator -->
-<mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+<!-- <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator> -->
