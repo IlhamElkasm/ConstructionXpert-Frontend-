@@ -4,7 +4,7 @@ import { ProjetService } from 'src/app/services/projet.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
-
+import { MatSort, Sort } from '@angular/material/sort';
 
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -21,10 +21,11 @@ export class ProjetComponent implements OnInit, AfterViewInit {
   selection = new SelectionModel<Projet>(true, []);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private projetService: ProjetService,
-    private authService:AuthService){}
+    private authService: AuthService) {}
 
   ngOnInit() {
     this.loadProjets();
@@ -32,18 +33,27 @@ export class ProjetComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  loadProjets() {
-    this.projetService.getProjets().subscribe(
+  loadProjets(sortField: string = 'id', sortDirection: string = 'asc') {
+    this.projetService.getProjets(sortField, sortDirection).subscribe(
       (data: Projet[]) => {
         this.projets = data;
         this.dataSource.data = this.projets;
-        console.log(this.projets)
+        console.log(this.projets);
       },
       (error) => {
         console.log('Error fetching projets', error);
       }
     );
+  }
+
+  onSortChange(sort: Sort) {
+    if (sort.direction) {
+      this.loadProjets(sort.active, sort.direction);
+    } else {
+      this.loadProjets();
+    }
   }
 }

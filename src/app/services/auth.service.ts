@@ -13,7 +13,7 @@ import { tap } from 'rxjs/operators';  // Import tap
 })
 export class AuthService {
 
-  private BASE_URL = "http://192.168.1.46:8765/api/v1/auth";
+  private BASE_URL = "http://192.168.1.58:8765/api/v1/auth";
   private readonly TOKEN_KEY = 'jwt';
   private readonly ROLE_KEY = 'role';
 

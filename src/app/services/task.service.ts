@@ -10,7 +10,7 @@ import { Task } from '../models/task';
 })
 export class TaskService {
 
-  private apiUrl = "http://192.168.1.46:8765/api/Taches";
+  private apiUrl = "http://192.168.1.58:8765/api/Taches";
 
   constructor(private http: HttpClient) { }
 
