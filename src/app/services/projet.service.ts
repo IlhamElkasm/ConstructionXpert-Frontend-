@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Projet } from '../models/projet';
 
@@ -16,15 +16,22 @@ export class ProjetService {
 
 
 
+  getProjets(sortField: string = 'id', sortDirection: string = 'asc'): Observable<Projet[]> {
+    let params = new HttpParams()
+      .set('sort', `${sortField},${sortDirection}`);
+    return this.http.get<Projet[]>(this.apiUrl, { params });
+  }
+
+
   // Create new project
   createNewProjet(projet: Projet): Observable<Projet> {
     return this.http.post<Projet>(this.apiUrl, projet);
   }
 
   // Get all projects
-  getProjets(): Observable<Projet[]> {
-    return this.http.get<Projet[]>(this.apiUrl);
-  }
+  // getProjets(): Observable<Projet[]> {
+  //   return this.http.get<Projet[]>(this.apiUrl);
+  // }
 
   // Get a project by id
   getProjetById(id: number): Observable<Projet> {

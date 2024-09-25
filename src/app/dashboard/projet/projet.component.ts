@@ -4,7 +4,7 @@ import { ProjetService } from 'src/app/services/projet.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
-
+import { MatSort, Sort } from '@angular/material/sort';
 
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -20,34 +20,23 @@ export class ProjetComponent implements OnInit{
   displayColumns = ["id", "nom", "date_debut", "date_fin", "description", "budget", "action"];
   selection = new SelectionModel<Projet>(true, []);
 
-  errorMessage!: string;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  // @ViewChild(MatPaginator) paginator!: MatPaginator;
+  errorMessage!: string;
 
   constructor(
     private projetService: ProjetService,
-    private authService:AuthService){}
+    private authService: AuthService) {}
 
   ngOnInit() {
     this.loadProjets();
   }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 
-  // ngAfterViewInit(): void {
-  //   this.dataSource.paginator = this.paginator;
-  // }
-
-  // loadProjets() {
-  //   this.projetService.getProjets().subscribe(
-  //     (data: Projet[]) => {
-  //       this.projets = data;
-  //       this.dataSource.data = this.projets;
-  //       console.log(this.projets)
-  //     },
-  //     (error) => {
-  //       console.log('Error fetching projets', error);
-  //     }
-  //   );
-  // }
 
   loadProjets(): void {
     this.projetService.getProjets().subscribe(
@@ -64,6 +53,8 @@ export class ProjetComponent implements OnInit{
       error => this.errorMessage = 'Error loading projets'
     );
   }
+
+
     // Sort Ascending by field
 sortProjectsAsc(field: string): void {
   this.projetService.getProjectsWithSortingAsc(field).subscribe(
@@ -101,7 +92,5 @@ sortProjectsDesc(field: string): void {
     error => this.errorMessage = 'Error sorting projets (desc)'
   );
 }
-
-
 
 }
