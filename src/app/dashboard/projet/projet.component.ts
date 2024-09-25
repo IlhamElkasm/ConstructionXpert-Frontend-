@@ -71,6 +71,9 @@ sortProjectsAsc(field: string): void {
       console.log('API response (ascending):', data); // Log the API response
       if (data && Array.isArray(data.response)) {
         this.projets = data.response; // Access the array from 'response'
+        //
+        this.dataSource.data = this.projets;
+
       } else {
         this.projets = [];
         console.error('Sorted API response is not an array');
@@ -80,6 +83,8 @@ sortProjectsAsc(field: string): void {
   );
 }
 
+
+
 // Sort Descending by field
 sortProjectsDesc(field: string): void {
   this.projetService.getProjectsWithSortingDesc(field).subscribe(
@@ -87,6 +92,7 @@ sortProjectsDesc(field: string): void {
       console.log('API response (descending):', data); // Log the API response
       if (data && Array.isArray(data.response)) {
         this.projets = data.response; // Access the array from 'response'
+        this.dataSource.data = this.projets;
       } else {
         this.projets = [];
         console.error('Sorted API response is not an array');
@@ -95,4 +101,7 @@ sortProjectsDesc(field: string): void {
     error => this.errorMessage = 'Error sorting projets (desc)'
   );
 }
+
+
+
 }

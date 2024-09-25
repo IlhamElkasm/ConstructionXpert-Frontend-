@@ -12,7 +12,7 @@ export class RessourceService {
   constructor(private http:HttpClient) { }
 
 
-  private apiUrl = "http://localhost:8765/api/Ressource";
+  private apiUrl = "http://192.168.1.58:8765/api/Ressource";
 
 
 

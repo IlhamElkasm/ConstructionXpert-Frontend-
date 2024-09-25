@@ -9,7 +9,7 @@ import { Projet } from '../models/projet';
 })
 export class ProjetService {
 
-  private apiUrl = "http://localhost:8765/api/Projets";
+  private apiUrl = "http://192.168.1.58:8765/api/Projets";
 
   constructor(private http: HttpClient) { }
 
