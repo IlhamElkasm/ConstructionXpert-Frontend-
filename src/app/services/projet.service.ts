@@ -9,17 +9,26 @@ import { Projet } from '../models/projet';
 })
 export class ProjetService {
 
+  // private apiUrl = "http://192.168.1.58:8765/api/Projets";
   private apiUrl = "http://192.168.1.58:8765/api/Projets";
+
 
   constructor(private http: HttpClient) { }
 
 
 
 
-  getProjets(sortField: string = 'id', sortDirection: string = 'asc'): Observable<Projet[]> {
-    let params = new HttpParams()
-      .set('sort', `${sortField},${sortDirection}`);
-    return this.http.get<Projet[]>(this.apiUrl, { params });
+    // Fetch projects with server-side sorting
+    getProjets(sortDirection: string = 'Asc', sortField: string = 'id'): Observable<Projet[]> {
+      const url = `${this.apiUrl}/${sortDirection}/${sortField}`; // Example: /Asc/id or /Desc/name
+      console.log(`Fetching projects from: ${url}`); // Log the URL for debugging
+      return this.http.get<Projet[]>(url);
+    }
+
+
+     // Get all projects
+  getProjetsIntial(): Observable<Projet[]> {
+    return this.http.get<Projet[]>(this.apiUrl);
   }
 
 
@@ -28,10 +37,7 @@ export class ProjetService {
     return this.http.post<Projet>(this.apiUrl, projet);
   }
 
-  // Get all projects
-  // getProjets(): Observable<Projet[]> {
-  //   return this.http.get<Projet[]>(this.apiUrl);
-  // }
+
 
   // Get a project by id
   getProjetById(id: number): Observable<Projet> {
